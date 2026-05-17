@@ -58,7 +58,7 @@
     background: linear-gradient(to bottom, rgba(15,14,12,0.5) 0%, rgba(15,14,12,0.1) 40%, rgba(15,14,12,0.6) 100%);
   }
 
-  .scroll-bar { position: absolute; bottom: 0; left: 0; height: 3px; background: #7ecfb8; width: 0; z-index: 10; }
+  .scroll-bar { position: absolute; bottom: 0; left: 0; height: 3px; background: #7ecfb8; width: 0; z-index: 10; transition: width 0.1s ease-out; }
 
   .chapter-counter { position: absolute; top: 50%; right: 52px; transform: translateY(-50%); z-index: 10; text-align: right; }
   .c-big { font-family: var(--serif); font-size: 80px; font-weight: 300; color: rgba(255,255,255,0.15); line-height: 1; transition: color 0.5s; }
@@ -66,7 +66,7 @@
   .c-small { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
   .c-small.lit { color: rgba(255,255,255,0.55); }
 
-  .chapter { position: absolute; bottom: 80px; left: 52px; right: 200px; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; pointer-events: none; z-index: 5; }
+  .chapter { position: absolute; bottom: 80px; left: 52px; right: 200px; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: none; z-index: 5; }
   .chapter.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
   .ch-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
   .ch-tag::after { content: ''; width: 36px; height: 0.5px; background: rgba(255,255,255,0.3); }
@@ -75,7 +75,7 @@
   .ch-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 500px; line-height: 1.8; margin-top: 18px; }
 
   /* Expertise Section - appears in video section */
-  .expertise-chapter { position: absolute; bottom: 80px; left: 52px; right: 52px; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; z-index: 6; }
+  .expertise-chapter { position: absolute; bottom: 80px; left: 52px; right: 52px; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; z-index: 6; }
   .expertise-chapter.active { opacity: 1; transform: translateY(0); }
   .ex-ch-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
   .ex-ch-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #7ecfb8; }
@@ -385,10 +385,20 @@ audio.load();
 video.addEventListener('loadedmetadata',()=>{ video.pause(); });
 video2.addEventListener('loadedmetadata',()=>{ video2.pause(); });
 
+let targetProgress = 0;
+let currentProgress = 0;
+const smoothFactor = 0.08;
+
 function scrub(){
   const rect=scrubEl.getBoundingClientRect();
   const trackH=scrubEl.offsetHeight-window.innerHeight;
-  const progress=Math.max(0,Math.min(1,-rect.top/trackH));
+  targetProgress = Math.max(0,Math.min(1,-rect.top/trackH));
+}
+
+function update(){
+  currentProgress += (targetProgress - currentProgress) * smoothFactor;
+  
+  const progress = currentProgress;
 
   // Video switching: 0-50% first video, 50-100% second video
   if(progress <= 0.5){
@@ -414,9 +424,9 @@ function scrub(){
     if(Math.abs(audio.currentTime - audioProgress) > 0.5){
       audio.currentTime = audioProgress;
     }
-    if(progress > 0 && progress < 1){
+    if(progress > 0.02 && progress < 0.98){
       audio.play().catch(()=>{});
-    } else {
+    } else if(progress <= 0.02 || progress >= 0.98){
       audio.pause();
     }
   }
@@ -434,10 +444,13 @@ function scrub(){
   else{
     if(lastCh!==3){chapters.forEach(c=>c.classList.remove('active'));exChapter.classList.add('active');cBig.textContent=chNums[3];cSmall.textContent=chLabels[3];lastCh=3;}
   }
+
+  requestAnimationFrame(update);
 }
 
 window.addEventListener('scroll',scrub,{passive:true});
 scrub();
+requestAnimationFrame(update);
 </script>
 </body>
 </html>
