@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Collin Davis Matimbwi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1917; --mono: 'DM Mono', monospace; --serif: 'Cormorant Garamond', serif; --sans: 'DM Sans', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--ink); color: #fafaf8; padding: 0; min-height: 100vh; }
+  
+  .container { max-width: 1200px; margin: 0 auto; padding: 60px 52px; }
+  
+  .back { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7ecfb8; text-decoration: none; margin-bottom: 48px; transition: gap 0.2s; }
+  .back:hover { gap: 14px; }
+  .back svg { width: 16px; height: 16px; }
+
+  .header { margin-bottom: 60px; }
+  .sec-idx { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #7ecfb8; display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .sec-idx::after { content: ''; flex: 1; height: 1px; background: #333; max-width: 200px; }
+  h1 { font-family: var(--serif); font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.1; margin-bottom: 24px; }
+  h1 em { font-style: italic; color: #7ecfb8; }
+  p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.6); max-width: 600px; }
+
+  .projects-grid { display: grid; gap: 24px; }
+  .project-card { background: #222; border: 1px solid #333; padding: 32px; display: grid; grid-template-columns: 60px 1fr auto; gap: 24px; align-items: start; transition: border-color 0.3s, transform 0.3s; }
+  .project-card:hover { border-color: #7ecfb8; transform: translateY(-4px); }
+  .project-num { font-family: var(--serif); font-size: 32px; font-weight: 300; color: #444; line-height: 1; }
+  .project-card:hover .project-num { color: #7ecfb8; }
+  .project-content { flex: 1; }
+  .project-title { font-size: 18px; font-weight: 500; margin-bottom: 10px; color: #fafaf8; }
+  .project-desc { font-size: 14px; color: #aaa; line-height: 1.7; margin-bottom: 16px; }
+  .project-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #7ecfb8; background: rgba(126,207,184,0.1); padding: 6px 14px; border-radius: 2px; }
+
+  .stats-sidebar { position: sticky; top: 100px; background: #222; border: 1px solid #333; padding: 32px; }
+  .stats-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #666; margin-bottom: 16px; }
+  .stats-value { font-family: var(--serif); font-size: 24px; font-weight: 300; color: #fafaf8; margin-bottom: 24px; }
+  .stats-list { list-style: none; }
+  .stats-list li { font-size: 13px; color: #aaa; padding: 10px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between; }
+  .stats-list li:last-child { border: none; }
+  .stats-list span { color: #fafaf8; }
+
+  .layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; align-items: start; }
+
+  @media(max-width:900px){
+    .container{padding:40px 24px;} .layout{grid-template-columns:1fr;} .stats-sidebar{position:static;margin-top:40px;}
+    .project-card{grid-template-columns:1fr;} .project-num{font-size:24px;margin-bottom:12px;}
+  }
+  @media(max-width:600px){
+    .container{padding:24px 16px;} h1{font-size:28px;} .project-card{padding:20px;} .project-title{font-size:16px;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="portfolio.html" class="back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Home
+  </a>
+
+  <div class="header">
+    <div class="sec-idx">04 — Projects</div>
+    <h1>Work that<br><em>speaks</em> for itself.</h1>
+    <p>A selection of projects spanning data intelligence, hardware engineering, and telecommunications across East Africa.</p>
+  </div>
+
+  <div class="layout">
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-content">
+          <div class="project-title">Predictive Network Fault Detection</div>
+          <div class="project-desc">LSTM + anomaly detection system predicting telecom failures 24 hours ahead, achieving 40% downtime reduction for regional networks.</div>
+          <span class="project-tag">ML · Telecom</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-content">
+          <div class="project-title">IoT Agricultural Monitoring System</div>
+          <div class="project-desc">End-to-end embedded system with LoRa wireless connectivity and Python dashboard for real-time soil and climate analytics.</div>
+          <span class="project-tag">IoT · Electronics</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-content">
+          <div class="project-title">Customer Churn Prediction Model</div>
+          <div class="project-desc">XGBoost pipeline with SHAP interpretability for a telecoms operator — 87% accuracy in predicting customer attrition.</div>
+          <span class="project-tag">Data Science</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <div class="project-content">
+          <div class="project-title">4G LTE Coverage Optimisation</div>
+          <div class="project-desc">RF propagation modelling and antenna tilt optimisation for a regional mobile network in East Africa.</div>
+          <span class="project-tag">RF · Telecom</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">05</div>
+        <div class="project-content">
+          <div class="project-title">Speech Emotion Recognition</div>
+          <div class="project-desc">CNN + MFCC feature extraction detecting emotional states from voice — applied to call centre quality monitoring.</div>
+          <span class="project-tag">NLP · DSP</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">06</div>
+        <div class="project-content">
+          <div class="project-title">Smart Energy Metering System</div>
+          <div class="project-desc">ARM-based energy meter with GSM connectivity, real-time billing dashboard, and automated consumption alerts.</div>
+          <span class="project-tag">Embedded · IoT</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">07</div>
+        <div class="project-content">
+          <div class="project-title">Fraud Detection in Mobile Money</div>
+          <div class="project-desc">Isolation Forest + neural network hybrid detecting anomalous transactions in real-time — reduced fraud by 35%.</div>
+          <span class="project-tag">ML · Fintech</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">08</div>
+        <div class="project-content">
+          <div class="project-title">Wildlife Conservation Sensor Network</div>
+          <div class="project-desc">Custom LoRaWAN nodes deployed across protected areas for tracking animal movement and detecting poaching activity.</div>
+          <span class="project-tag">IoT · Green Tech</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-sidebar">
+      <div class="stats-title">Featured Works</div>
+      <div class="stats-value">8 Projects</div>
+      <div class="stats-div" style="height:1px;background:#333;margin:16px 0;"></div>
+      <div class="stats-title" style="margin-top:16px;">By Domain</div>
+      <ul class="stats-list">
+        <li>Data Science & ML <span>4</span></li>
+        <li>Electronics & IoT <span>3</span></li>
+        <li>Telecom & RF <span>2</span></li>
+      </ul>
+      <div class="stats-div" style="height:1px;background:#333;margin:16px 0;"></div>
+      <div class="stats-title">Primary Tools</div>
+      <ul class="stats-list">
+        <li>Python · TensorFlow</li>
+        <li>MATLAB · GNU Radio</li>
+        <li>Arduino · STM32</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

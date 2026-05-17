@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Collin Davis Matimbwi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --white: #fafaf8; --ink: #1a1917; --accent: #3d6b5e; --mono: 'DM Mono', monospace; --serif: 'Cormorant Garamond', serif; --sans: 'DM Sans', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--ink); color: var(--white); padding: 60px 52px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .back { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7ecfb8; text-decoration: none; margin-bottom: 40px; }
+  .back:hover { text-decoration: underline; }
+  h1 { font-family: var(--serif); font-size: clamp(44px, 7vw, 92px); font-weight: 300; line-height: 0.95; letter-spacing: -0.02em; color: var(--white); margin-bottom: 44px; }
+  h1 em { font-style: italic; color: #7ecfb8; }
+  .c-div { height: 0.5px; background: #222; margin: 36px 0; }
+  .c-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; margin-bottom: 36px; }
+  .c-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #555; margin-bottom: 10px; }
+  .c-val { font-size: 15px; color: var(--white); font-weight: 300; line-height: 1.7; }
+  .c-val a { color: #7ecfb8; text-decoration: none; }
+  .c-val a:hover { text-decoration: underline; }
+  .c-val.sm { font-size: 13px; line-height: 2; color: #888; }
+  .profile-section { display: flex; align-items: center; gap: 40px; margin-bottom: 20px; }
+  .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 2px solid #333; }
+  .profile-text { flex: 1; }
+  .profile-text h1 { margin-bottom: 0; }
+  @media(max-width:900px){ body{padding:40px 24px;} .c-grid{grid-template-columns:1fr;gap:24px;} .profile-section{flex-direction:column;text-align:center;} }
+  @media(max-width:600px){ body{padding:24px 16px;} h1{font-size:clamp(32px,10vw,48px);} .profile-img{width:140px;height:140px;} .c-grid{gap:20px;} }
+</style>
+</head>
+<body>
+<a href="portfolio.html" class="back">← Back to Home</a>
+
+<div class="profile-section">
+  <img src="image/W.jpeg" alt="Collin Davis Matimbwi" class="profile-img">
+  <div class="profile-text">
+    <h1>Let's build<br>something <em>extraordinary.</em></h1>
+  </div>
+</div>
+
+<div class="c-div"></div>
+<div class="c-grid">
+  <div>
+    <div class="c-lbl">Phone</div>
+    <div class="c-val"><a href="tel:+255797017705">+255 797 017 705</a></div>
+  </div>
+  <div>
+    <div class="c-lbl">Location</div>
+    <div class="c-val">Mbeya, Tanzania</div>
+  </div>
+  <div>
+    <div class="c-lbl">Availability</div>
+    <div class="c-val">Open to freelance,<br>contract & full-time roles</div>
+  </div>
+</div>
+<div class="c-div"></div>
+<div class="c-grid">
+  <div>
+    <div class="c-lbl">Specialisations</div>
+    <div class="c-val sm">Data Science & ML<br>Electronics Engineering<br>Telecom & RF Systems<br>IoT & Embedded Systems</div>
+  </div>
+  <div>
+    <div class="c-lbl">Service regions</div>
+    <div class="c-val sm">Tanzania (on-site)<br>East Africa (on-site)<br>Worldwide (remote)</div>
+  </div>
+  <div>
+    <div class="c-lbl">Response time</div>
+    <div class="c-val sm">Within 24 hours</div>
+  </div>
+</div>
+</body>
+</html>

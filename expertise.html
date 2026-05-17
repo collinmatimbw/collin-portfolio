@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expertise — Collin Davis Matimbwi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1917; --mono: 'DM Mono', monospace; --serif: 'Cormorant Garamond', serif; --sans: 'DM Sans', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--ink); color: #fafaf8; padding: 0; min-height: 100vh; }
+  
+  .container { max-width: 1200px; margin: 0 auto; padding: 60px 52px; }
+  
+  .back { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7ecfb8; text-decoration: none; margin-bottom: 48px; transition: gap 0.2s; }
+  .back:hover { gap: 14px; }
+  .back svg { width: 16px; height: 16px; }
+
+  .header { margin-bottom: 60px; max-width: 600px; }
+  .sec-idx { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #7ecfb8; display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .sec-idx::after { content: ''; flex: 1; height: 1px; background: #333; max-width: 200px; }
+  h1 { font-family: var(--serif); font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.1; margin-bottom: 24px; }
+  h1 em { font-style: italic; color: #7ecfb8; }
+  p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.6); }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .expertise-card { background: #222; border: 1px solid #333; padding: 36px; transition: border-color 0.3s, transform 0.3s; }
+  .expertise-card:hover { border-color: #7ecfb8; transform: translateY(-4px); }
+  .expertise-card.featured { border-color: #7ecfb8; }
+  .card-num { font-family: var(--serif); font-size: 36px; font-weight: 300; color: #444; margin-bottom: 16px; }
+  .expertise-card.featured .card-num { color: #7ecfb8; }
+  .card-title { font-size: 18px; font-weight: 500; margin-bottom: 14px; color: #fafaf8; }
+  .card-desc { font-size: 14px; color: #aaa; line-height: 1.7; }
+
+  .layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; align-items: start; }
+  
+  .sidebar { position: sticky; top: 100px; background: #222; border: 1px solid #333; padding: 32px; }
+  .sidebar-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #666; margin-bottom: 16px; }
+  .sidebar-value { font-family: var(--serif); font-size: 24px; font-weight: 300; color: #fafaf8; margin-bottom: 24px; }
+  .sidebar-div { height: 1px; background: #333; margin: 20px 0; }
+  .sidebar-list { list-style: none; }
+  .sidebar-list li { font-size: 13px; color: #aaa; padding: 10px 0; border-bottom: 1px solid #333; display: flex; align-items: center; gap: 10px; }
+  .sidebar-list li:last-child { border: none; }
+  .sidebar-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #7ecfb8; flex-shrink: 0; }
+
+  @media(max-width:900px){
+    .container{padding:40px 24px;} .layout{grid-template-columns:1fr;} .cards-grid{grid-template-columns:1fr;} .sidebar{position:static;margin-top:40px;}
+  }
+  @media(max-width:600px){
+    .container{padding:24px 16px;} h1{font-size:28px;} .expertise-card{padding:24px;} .card-title{font-size:16px;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="portfolio.html" class="back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Home
+  </a>
+
+  <div class="header">
+    <div class="sec-idx">03 — Expertise</div>
+    <h1>Three divisions,<br><em>one integrated</em> mind.</h1>
+    <p>My expertise spans three interconnected domains enabling me to tackle complex, multi-layered engineering challenges — from the data layer to the physical signal layer.</p>
+  </div>
+
+  <div class="layout">
+    <div class="cards-grid">
+      <div class="expertise-card featured">
+        <div class="card-num">01</div>
+        <div class="card-title">Data Science & Machine Learning</div>
+        <div class="card-desc">Predictive modelling, statistical analysis, deep learning, NLP, computer vision, and data pipeline engineering. Python-first, production-ready.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="card-num">02</div>
+        <div class="card-title">Electronics Engineering</div>
+        <div class="card-desc">Circuit design, PCB layout, microcontroller programming, embedded systems, sensor integration, power electronics.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="card-num">03</div>
+        <div class="card-title">Telecom Engineering</div>
+        <div class="card-desc">Network architecture, RF system design, signal processing, LTE/5G protocols, antenna design, wireless comms.</div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-title">What I bring</div>
+      <div class="sidebar-value">Cross-domain thinking</div>
+      <div class="sidebar-div"></div>
+      <ul class="sidebar-list">
+        <li>ML model development & deployment</li>
+        <li>Data pipeline architecture</li>
+        <li>Circuit design & prototyping</li>
+        <li>RF & antenna engineering</li>
+        <li>Network planning & optimisation</li>
+        <li>IoT system integration</li>
+        <li>Signal processing & DSP</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
