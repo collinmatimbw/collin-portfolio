@@ -170,8 +170,6 @@
 <section id="video-scrub">
   <div class="video-sticky">
     <video id="bg-video" playsinline preload="auto" src="video/From KlickPin CF 16 Stunning kitchen organization ideas that are worth saving if you love elegant details and creative inspiration for beginners who want impressive - Pin-8373949302427895 (1).mp4"></video>
-    <video id="bg-video-2" playsinline preload="auto" src="video/From KlickPin CF Try these 34 Fresh wedding aisle decoration ideas that bring together comfort beauty and useful ideas you will actually try for creators who love - Pin-12173861489596621.mp4"></video>
-    <audio id="bg-audio" src="audio/from-klickpin-cf-try-these-34-fresh-wedding-aisle-decoration-ideas-that-bring-to_xJAlg9zz.mp3"></audio>
     <div class="video-overlay"></div>
     <div class="scroll-bar" id="scrollBar"></div>
 
@@ -367,8 +365,6 @@ const nav=document.getElementById('mainNav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>window.innerHeight*.5);},{passive:true});
 
 const video=document.getElementById('bg-video');
-const video2=document.getElementById('bg-video-2');
-const audio=document.getElementById('bg-audio');
 const scrubEl=document.getElementById('video-scrub');
 const bar=document.getElementById('scrollBar');
 const chapters=[document.getElementById('ch0'),document.getElementById('ch1'),document.getElementById('ch2')];
@@ -380,10 +376,7 @@ const chLabels=['Intro','About','Disciplines','Expertise'];
 let lastCh=-1;
 
 video.load();
-video2.load();
-audio.load();
 video.addEventListener('loadedmetadata',()=>{ video.pause(); });
-video2.addEventListener('loadedmetadata',()=>{ video2.pause(); });
 
 let targetProgress = 0;
 let currentProgress = 0;
@@ -400,36 +393,12 @@ function update(){
   
   const progress = currentProgress;
 
-  // Video switching: 0-50% first video, 50-100% second video
-  if(progress <= 0.5){
-    video.style.display = 'block';
-    video2.style.display = 'none';
-    if(video.readyState >= 2 && video.duration){
-      video.currentTime = progress * 2 * video.duration;
-    }
-  }
-  else{
-    video.style.display = 'none';
-    video2.style.display = 'block';
-    if(video2.readyState >= 2 && video2.duration){
-      video2.currentTime = (progress - 0.5) * 2 * video2.duration;
-    }
+  // Video scrubbing - single video
+  if(video.readyState >= 2 && video.duration){
+    video.currentTime = progress * video.duration;
   }
 
   bar.style.width=(progress*100)+'%';
-
-  // Audio scrubbing - sync with video
-  if(audio.readyState >= 1 && audio.duration){
-    const audioProgress = progress * audio.duration;
-    if(Math.abs(audio.currentTime - audioProgress) > 0.5){
-      audio.currentTime = audioProgress;
-    }
-    if(progress > 0.02 && progress < 0.98){
-      audio.play().catch(()=>{});
-    } else if(progress <= 0.02 || progress >= 0.98){
-      audio.pause();
-    }
-  }
 
   // Chapter logic
   if(progress < 0.25){
