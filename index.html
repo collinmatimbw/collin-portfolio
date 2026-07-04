@@ -47,7 +47,8 @@
 
   /* HERO */
   #hero { position: relative; height: 100vh; overflow: hidden; background: var(--ink); }
-  #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #heroVideo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,14,12,0.5) 0%, rgba(15,14,12,0.1) 40%, rgba(15,14,12,0.6) 100%); z-index: 2; }
   .hero-content { position: absolute; bottom: 80px; left: 52px; right: 52px; z-index: 5; }
   .hero-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
   .hero-tag::after { content: ''; width: 36px; height: 0.5px; background: rgba(255,255,255,0.3); }
@@ -131,7 +132,8 @@
 
 <!-- HERO SECTION -->
 <section id="hero">
-  <canvas id="heroCanvas"></canvas>
+  <video id="heroVideo" autoplay muted loop playsinline src="video/7807fcc63f46bed38d4f1443ce4e3482.mp4"></video>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-tag">Data Scientist · Electronics & Telecom Engineer</div>
     <h1 class="hero-heading">Collin<br><em>Davis</em><br>Matimbwi</h1>
@@ -225,49 +227,8 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 const nav=document.getElementById('mainNav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>window.innerHeight*.5);},{passive:true});
 
-const canvas=document.getElementById('heroCanvas');
-const ctx=canvas.getContext('2d');
-let w,h;
-
-function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
-resize();
-window.addEventListener('resize',resize);
-
-const nodes=[];
-const N=50;
-const DIST=150;
-
-for(let i=0;i<N;i++){
-  nodes.push({
-    x:Math.random()*w,y:Math.random()*h,
-    vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,
-    r:Math.random()*1.5+0.8
-  });
-}
-
-function animate(){
-  ctx.clearRect(0,0,w,h);
-  for(let i=0;i<N;i++){
-    const n=nodes[i];
-    n.x+=n.vx;n.y+=n.vy;
-    if(n.x<0||n.x>w)n.vx*=-1;
-    if(n.y<0||n.y>h)n.vy*=-1;
-    ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-    ctx.fillStyle='rgba(126,207,184,0.5)';ctx.fill();
-    for(let j=i+1;j<N;j++){
-      const o=nodes[j];
-      const dx=n.x-o.x,dy=n.y-o.y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<DIST){
-        ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(o.x,o.y);
-        ctx.strokeStyle=`rgba(126,207,184,${0.12*(1-d/DIST)})`;
-        ctx.lineWidth=0.5;ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(animate);
-}
-animate();
+const video=document.getElementById('heroVideo');
+video.playbackRate=0.6;
 </script>
 </body>
 </html>
