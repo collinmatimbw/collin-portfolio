@@ -46,14 +46,14 @@
   .nav-cta:hover { background: var(--white); color: var(--ink); }
 
   /* HERO */
-  #hero { position: relative; height: 100vh; overflow: hidden; background: var(--ink); }
-  #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .hero-content { position: absolute; bottom: 80px; left: 52px; right: 52px; z-index: 5; }
+  #hero { display: flex; align-items: center; min-height: 100vh; background: var(--ink); overflow: hidden; }
+  .hero-content { flex: 1; padding: 0 0 0 52px; z-index: 5; max-width: 640px; }
   .hero-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
   .hero-tag::after { content: ''; width: 36px; height: 0.5px; background: rgba(255,255,255,0.3); }
   .hero-heading { font-family: var(--serif); font-size: clamp(44px, 7vw, 92px); font-weight: 300; line-height: 0.95; letter-spacing: -0.02em; color: var(--white); }
   .hero-heading em { font-style: italic; color: #7ecfb8; }
   .hero-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 500px; line-height: 1.8; margin-top: 18px; }
+  spline-viewer { flex: 1; height: 100vh; width: 50%; }
 
   /* LIGHT SECTIONS */
   .light-section { background: var(--ink); color: var(--white); min-height: 100vh; padding: 100px 52px; border-top: 1px solid #333; }
@@ -101,7 +101,9 @@
 
   @media(max-width:900px){
     nav{padding:16px 24px;} .nav-links{display:none;}
-    .hero-content{left:24px;right:24px;bottom:60px;}
+    #hero{flex-direction:column;}
+    .hero-content{padding:0 24px;max-width:100%;}
+    spline-viewer{width:100%;height:50vh;}
     .light-section{padding:60px 24px;}
     .cards-grid{grid-template-columns:1fr;}
     .project-row{grid-template-columns:1fr;}
@@ -131,12 +133,12 @@
 
 <!-- HERO SECTION -->
 <section id="hero">
-  <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
     <div class="hero-tag">Data Scientist · Electronics & Telecom Engineer</div>
     <h1 class="hero-heading">Collin<br><em>Davis</em><br>Matimbwi</h1>
     <p class="hero-sub">Transforming complex data into actionable intelligence. Engineering robust systems at the intersection of data science, electronics, and telecommunications.</p>
   </div>
+  <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" events-target="global"></spline-viewer>
 </section>
 
 <!-- PROJECTS SECTION -->
@@ -184,9 +186,9 @@
     </div>
   </div>
   <div style="margin-top:28px">
-    <div style="color:#888;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Telecommunications & RF</div>
+    <div style="color:#888;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Networking</div>
     <div class="skills-track">
-      <span class="skill-pill hi">LTE/5G</span><span class="skill-pill hi">GNU Radio</span><span class="skill-pill">Atoll</span><span class="skill-pill">Antenna Design</span><span class="skill-pill">Wireshark</span><span class="skill-pill">Cisco IOS</span><span class="skill-pill">SDR</span>
+      <span class="skill-pill hi">Networking</span>
     </div>
   </div>
 </section>
@@ -215,6 +217,7 @@
   </div>
 </section>
 
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.10/build/spline-viewer.js"></script>
 <script>
 const cursorEl=document.getElementById('cursor');
 const cRing=document.getElementById('cursor-ring');
@@ -224,50 +227,6 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 
 const nav=document.getElementById('mainNav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>window.innerHeight*.5);},{passive:true});
-
-const canvas=document.getElementById('heroCanvas');
-const ctx=canvas.getContext('2d');
-let w,h;
-
-function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
-resize();
-window.addEventListener('resize',resize);
-
-const nodes=[];
-const N=50;
-const DIST=150;
-
-for(let i=0;i<N;i++){
-  nodes.push({
-    x:Math.random()*w,y:Math.random()*h,
-    vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,
-    r:Math.random()*1.5+0.8
-  });
-}
-
-function animate(){
-  ctx.clearRect(0,0,w,h);
-  for(let i=0;i<N;i++){
-    const n=nodes[i];
-    n.x+=n.vx;n.y+=n.vy;
-    if(n.x<0||n.x>w)n.vx*=-1;
-    if(n.y<0||n.y>h)n.vy*=-1;
-    ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-    ctx.fillStyle='rgba(126,207,184,0.5)';ctx.fill();
-    for(let j=i+1;j<N;j++){
-      const o=nodes[j];
-      const dx=n.x-o.x,dy=n.y-o.y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<DIST){
-        ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(o.x,o.y);
-        ctx.strokeStyle=`rgba(126,207,184,${0.12*(1-d/DIST)})`;
-        ctx.lineWidth=0.5;ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(animate);
-}
-animate();
 </script>
 </body>
 </html>
