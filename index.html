@@ -137,7 +137,7 @@
   <div class="hero-content">
     <div class="hero-tag">Data Scientist · Electronics & Telecom Engineer</div>
     <h1 class="hero-heading">Collin<br><em>Davis</em><br>Matimbwi</h1>
-    <p class="hero-sub">Transforming complex data into actionable intelligence. Engineering robust systems at the intersection of data science, electronics, and telecommunications.</p>
+    <p class="hero-sub" id="typewriter"></p>
   </div>
 </section>
 
@@ -229,6 +229,12 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scr
 
 const video=document.getElementById('heroVideo');
 video.playbackRate=0.6;
+
+const tw=document.getElementById('typewriter');
+const txt='Transforming complex data into actionable intelligence. Engineering robust systems at the intersection of data science, electronics, and telecommunications.';
+let i=0;
+tw.innerHTML='|';
+(function type(){if(i<txt.length){tw.innerHTML=txt.slice(0,i+1)+'|';i++;setTimeout(type,25);}else{tw.innerHTML=txt;}})();
 </script>
 </body>
 </html>
