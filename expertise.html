@@ -7,9 +7,10 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231a1917'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%237ecfb8' font-family='serif' font-size='20' font-weight='400'%3EC%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root { --ink: #1a1917; --mono: 'DM Mono', monospace; --serif: 'Cormorant Garamond', serif; --sans: 'DM Sans', sans-serif; }
+  :root { --ink: #1a1917; --mono: 'DM Mono', monospace; --serif: 'Cormorant Garamond', serif; --sans: 'DM Sans', sans-serif; --white:#fafaf8;--card-bg:#222;--card-border:#333;--text-secondary:#aaa;--text-label:#666;--text-num:#444;--ls-p:rgba(255,255,255,0.6); }
+  body.light-mode{--ink:#fbf9f6;--white:#1a1917;--card-bg:#fff;--card-border:#e0ddd8;--text-secondary:#777;--text-label:#999;--text-num:#bbb;--ls-p:rgba(0,0,0,0.55);}
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--sans); background: var(--ink); color: #fafaf8; padding: 0; min-height: 100vh; }
+  body { font-family: var(--sans); background: var(--ink); color: var(--white); padding: 0; min-height: 100vh; }
   
   .container { max-width: 1200px; margin: 0 auto; padding: 60px 52px; }
   
@@ -19,28 +20,28 @@
 
   .header { margin-bottom: 60px; max-width: 600px; }
   .sec-idx { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #7ecfb8; display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-  .sec-idx::after { content: ''; flex: 1; height: 1px; background: #333; max-width: 200px; }
+  .sec-idx::after { content: ''; flex: 1; height: 1px; background: var(--card-border); max-width: 200px; }
   h1 { font-family: var(--serif); font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.1; margin-bottom: 24px; }
   h1 em { font-style: italic; color: #7ecfb8; }
-  p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.6); }
+  p { font-size: 16px; line-height: 1.8; color: var(--ls-p); }
 
   .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .expertise-card { background: #222; border: 1px solid #333; padding: 36px; transition: border-color 0.3s, transform 0.3s; }
+  .expertise-card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 36px; transition: border-color 0.3s, transform 0.3s; }
   .expertise-card:hover { border-color: #7ecfb8; transform: translateY(-4px); }
   .expertise-card.featured { border-color: #7ecfb8; }
-  .card-num { font-family: var(--serif); font-size: 36px; font-weight: 300; color: #444; margin-bottom: 16px; }
+  .card-num { font-family: var(--serif); font-size: 36px; font-weight: 300; color: var(--text-num); margin-bottom: 16px; }
   .expertise-card.featured .card-num { color: #7ecfb8; }
-  .card-title { font-size: 18px; font-weight: 500; margin-bottom: 14px; color: #fafaf8; }
-  .card-desc { font-size: 14px; color: #aaa; line-height: 1.7; }
+  .card-title { font-size: 18px; font-weight: 500; margin-bottom: 14px; color: var(--white); }
+  .card-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
   .layout { display: grid; grid-template-columns: 1fr 320px; gap: 60px; align-items: start; }
   
-  .sidebar { position: sticky; top: 100px; background: #222; border: 1px solid #333; padding: 32px; }
-  .sidebar-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #666; margin-bottom: 16px; }
-  .sidebar-value { font-family: var(--serif); font-size: 24px; font-weight: 300; color: #fafaf8; margin-bottom: 24px; }
-  .sidebar-div { height: 1px; background: #333; margin: 20px 0; }
+  .sidebar { position: sticky; top: 100px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 32px; }
+  .sidebar-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-label); margin-bottom: 16px; }
+  .sidebar-value { font-family: var(--serif); font-size: 24px; font-weight: 300; color: var(--white); margin-bottom: 24px; }
+  .sidebar-div { height: 1px; background: var(--card-border); margin: 20px 0; }
   .sidebar-list { list-style: none; }
-  .sidebar-list li { font-size: 13px; color: #aaa; padding: 10px 0; border-bottom: 1px solid #333; display: flex; align-items: center; gap: 10px; }
+  .sidebar-list li { font-size: 13px; color: var(--text-secondary); padding: 10px 0; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 10px; }
   .sidebar-list li:last-child { border: none; }
   .sidebar-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #7ecfb8; flex-shrink: 0; }
 
@@ -54,10 +55,16 @@
 </head>
 <body>
 <div class="container">
-  <a href="portfolio.html" class="back">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Back to Home
-  </a>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <a href="portfolio.html" class="back" style="margin-bottom:0;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Home
+    </a>
+    <button id="themeToggle" aria-label="Toggle theme" style="background:none;border:none;cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--white);transition:color 0.2s;">
+      <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
 
   <div class="header">
     <div class="sec-idx">03 — Expertise</div>
@@ -100,5 +107,8 @@
     </div>
   </div>
 </div>
+<script>
+(function(){const b=document.getElementById('themeToggle');const s=localStorage.getItem('theme');const p=window.matchMedia('(prefers-color-scheme:light)').matches;if(s==='light'||(!s&&p)){document.body.classList.add('light-mode');}if(b){const sun=b.querySelector('.sun-icon');const moon=b.querySelector('.moon-icon');b.addEventListener('click',()=>{document.body.classList.toggle('light-mode');const isLight=document.body.classList.contains('light-mode');localStorage.setItem('theme',isLight?'light':'dark');if(sun&&moon){sun.style.display=isLight?'none':'';moon.style.display=isLight?'':'none';}});const isLight=document.body.classList.contains('light-mode');if(sun&&moon){sun.style.display=isLight?'none':'';moon.style.display=isLight?'':'none';}}})();
+</script>
 </body>
 </html>
